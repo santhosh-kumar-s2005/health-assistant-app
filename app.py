@@ -117,15 +117,15 @@ st.markdown("""
         font-weight: 500;
         line-height: 1.6;
     }
-    /* New CSS rule for the Pro Tip */
-    .pro-tip {
-        background: #f0f8ff; 
-        padding: 14px; 
-        border-radius: 12px; 
-        margin: 12px 0; 
-        border-left: 4px solid black; 
-        font-size: 1.05em;
-    }
+ .pro-tip {
+    background: #f0f8ff; 
+    padding: 14px; 
+    border-radius: 12px; 
+    margin: 12px 0; 
+    border-left: 4px solid #1565c0; 
+    font-size: 1.05em;
+    color: #222222; /* Add this line to make the text dark and visible */
+}
     .pro-tip-title {
         color: red; 
         font-weight: bold;
