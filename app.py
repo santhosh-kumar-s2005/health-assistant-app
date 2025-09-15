@@ -1,3 +1,4 @@
+# The updated code for app.py
 import streamlit as st
 from claude_model import ask_ai
 import hashlib
@@ -116,6 +117,19 @@ st.markdown("""
         font-weight: 500;
         line-height: 1.6;
     }
+    /* New CSS rule for the Pro Tip */
+    .pro-tip {
+        background: #f0f8ff; 
+        padding: 14px; 
+        border-radius: 12px; 
+        margin: 12px 0; 
+        border-left: 4px solid #1565c0; 
+        font-size: 1.05em;
+    }
+    .pro-tip-title {
+        color: #1565c0; 
+        font-weight: bold;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -168,11 +182,9 @@ if prompt := st.chat_input("💬 Type your health question..."):
     # Get AI response
     response = ask_ai(sanitized_prompt)
     styled_response = f"""
-    <div style='line-height: 1.9; color: #000000; font-size: 1.15em;'>
-        <p style='margin-bottom: 15px;'>{response}</p>
-        <div style='background: #f0f8ff; padding: 14px; border-radius: 12px; margin: 12px 0; border-left: 4px solid #1565c0; font-size: 1.05em;'>
-            <span style='color: #1565c0; font-weight: bold;'>💡 Pro Tip:</span> Always consult a doctor for serious health concerns.
-        </div>
+    <p>{response}</p>
+    <div class="pro-tip">
+        <span class="pro-tip-title">💡 Pro Tip:</span> Always consult a doctor for serious health concerns.
     </div>
     """
     with st.chat_message("assistant"):
