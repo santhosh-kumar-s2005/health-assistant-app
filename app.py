@@ -1,10 +1,43 @@
-# The updated code for app.py
 import streamlit as st
 from claude_model import ask_ai
 import hashlib
 import uuid
 from datetime import datetime
 from storage import save_conversation
+
+# =================== AWS CREDENTIALS DEBUG ===================
+import os
+import boto3
+from botocore.exceptions import ClientError
+
+# Debug AWS credentials
+try:
+    sts = boto3.client('sts',
+        aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
+        aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
+        region_name='us-east-1'
+    )
+    identity = sts.get_caller_identity()
+    st.sidebar.success(f"✅ AWS Connected: {identity['Arn']}")
+except ClientError as e:
+    st.sidebar.error(f"❌ AWS Error: {e.response['Error']['Message']}")
+except Exception as e:
+    st.sidebar.error(f"❌ Unexpected error: {str(e)}")
+
+# Debug Bedrock access
+try:
+    bedrock = boto3.client('bedrock',
+        aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
+        aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
+        region_name='us-east-1'
+    )
+    models = bedrock.list_foundation_models()
+    st.sidebar.success(f"✅ Bedrock Access: {len(models['modelSummaries'])} models available")
+except ClientError as e:
+    st.sidebar.error(f"❌ Bedrock Error: {e.response['Error']['Message']}")
+except Exception as e:
+    st.sidebar.error(f"❌ Bedrock Unexpected error: {str(e)}")
+# =================== END DEBUG ===================
 
 st.set_page_config(page_title="Health Assistant Pro", page_icon="🏥", layout="wide")
 
@@ -117,15 +150,15 @@ st.markdown("""
         font-weight: 500;
         line-height: 1.6;
     }
- .pro-tip {
-    background: #f0f8ff; 
-    padding: 14px; 
-    border-radius: 12px; 
-    margin: 12px 0; 
-    border-left: 4px solid #1565c0; 
-    font-size: 1.05em;
-    color: #222222; /* Add this line to make the text dark and visible */
-}
+    .pro-tip {
+        background: #f0f8ff; 
+        padding: 14px; 
+        border-radius: 12px; 
+        margin: 12px 0; 
+        border-left: 4px solid #1565c0; 
+        font-size: 1.05em;
+        color: #222222; /* Add this line to make the text dark and visible */
+    }
     .pro-tip-title {
         color: red; 
         font-weight: bold;
