@@ -1,2 +1,2 @@
 streamlit
-boto3
+boto3>=1.28.0
