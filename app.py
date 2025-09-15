@@ -123,7 +123,7 @@ st.markdown("""
         padding: 14px; 
         border-radius: 12px; 
         margin: 12px 0; 
-        border-left: 4px solid #1565c0; 
+        border-left: 4px solid black; 
         font-size: 1.05em;
     }
     .pro-tip-title {
