@@ -127,7 +127,7 @@ st.markdown("""
         font-size: 1.05em;
     }
     .pro-tip-title {
-        color: #1565c0; 
+        color: red; 
         font-weight: bold;
     }
 </style>
