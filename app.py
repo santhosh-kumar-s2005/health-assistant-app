@@ -138,6 +138,7 @@ def sanitize_input(user_input):
 st.title("🏥 Health Assistant Pro")
 st.markdown('<p class="desc-text">Your friendly AI health guide. Ask me about fitness, diet, or wellness tips 👇</p>', unsafe_allow_html=True)
 st.markdown('<div class="privacy-badge">🔒 Secure & Private Chat</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: center; margin-top: 10px; color: #666; font-style: italic;">Created by NOVA</div>', unsafe_allow_html=True)
 
 # =================== CHAT STATE ===================
 if "messages" not in st.session_state:
@@ -167,10 +168,10 @@ if prompt := st.chat_input("💬 Type your health question..."):
     # Get AI response
     response = ask_ai(sanitized_prompt)
     styled_response = f"""
-    <div style='line-height: 1.9; color: white; font-size: 1.15em;'>
+    <div style='line-height: 1.9; color: #000000; font-size: 1.15em;'>
         <p style='margin-bottom: 15px;'>{response}</p>
-        <div style='background: black; padding: 14px; border-radius: 12px; margin: 12px 0; border-left: 4px solid #1565c0; font-size: 1.05em;'>
-            <span style='color:red; font-weight: bold;'>💡 Pro Tip:</span> Always consult a doctor for serious health concerns.
+        <div style='background: #f0f8ff; padding: 14px; border-radius: 12px; margin: 12px 0; border-left: 4px solid #1565c0; font-size: 1.05em;'>
+            <span style='color: #1565c0; font-weight: bold;'>💡 Pro Tip:</span> Always consult a doctor for serious health concerns.
         </div>
     </div>
     """
